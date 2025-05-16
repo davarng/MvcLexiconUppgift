@@ -1,0 +1,26 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using LexiconCarsApp.Web.Controllers
+@using LexiconCarsApp.Web.Models
+@model Car
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Car details</title>
+    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
+</head>
+<body>
+    <div>
+        <h2>Car details</h2>
+        <ul>
+            <li>@Model.Id</li>
+            <li>@Model.Make</li>
+            <li>@Model.Model</li>
+            <li>@Model.Color</li>
+            <li>@Model.Year</li>
+        </ul>
+        <h3><a asp-controller="Cars" asp-action="@nameof(CarsController.Index)">Index</a></h3>
+    </div>
+</body>
+</html>
