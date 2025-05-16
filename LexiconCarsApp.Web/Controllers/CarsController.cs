@@ -8,6 +8,8 @@ namespace LexiconCarsApp.Web.Controllers
     {
         static readonly CarService carService = new();
 
+        public CarsController() { }
+
         [HttpGet("/")]
         public IActionResult Index()
         {
@@ -31,8 +33,13 @@ namespace LexiconCarsApp.Web.Controllers
         [HttpPost("/create")]
         public IActionResult Create(Car car)
         {
-            carService.AddCar(car);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                carService.AddCar(car);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
 
         [HttpGet("/edit/{id}")]
@@ -45,11 +52,16 @@ namespace LexiconCarsApp.Web.Controllers
         [HttpPost("/edit/{id}")]
         public IActionResult Edit(Car car)
         {
-            carService.UpdateCar(car);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                carService.UpdateCar(car);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
 
-        [HttpPost("/delete/{id}")]
+        [HttpGet("/delete/{id}")]
         public IActionResult Delete(int id)
         {
             carService.DeleteCar(id);

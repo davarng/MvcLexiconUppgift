@@ -15,19 +15,19 @@
     <form asp-controller="Cars" asp-action="@nameof(CarsController.Create)">
         <label asp-for="Make"></label>
         <input asp-for="Make" required/>
-        <span asp-validation-for="Make"></span>
+        @*<span asp-validation-for="Make"></span> *@
 
         <label asp-for="Model"></label>
         <input asp-for="Model" required/>
-        <span asp-validation-for="Model"></span>
+        @*<span asp-validation-for="Model"></span> *@
 
         <label asp-for="Color"></label>
         <input asp-for="Color" required/>
-        <span asp-validation-for="Color"></span>
+        @* <span asp-validation-for="Color"></span> *@
 
         <label asp-for="Year"></label>
         <input asp-for="Year" required/>
-        <span asp-validation-for="Year"></span>
+        @* <span asp-validation-for="Year"></span> *@
 
         <input type="submit" value="Save" />
     </form>

@@ -19,6 +19,7 @@
                 <li>
                     <a asp-controller="Cars" asp-action="@nameof(CarsController.Details)" asp-route-id="@car.Id">@car.Make</a>
                     <a asp-controller="Cars" asp-action="@nameof(CarsController.Edit)" asp-route-id="@car.Id">Edit</a>
+                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Delete)" asp-route-id="@car.Id">Delete</a>
                 </li>
             }
         </ul>

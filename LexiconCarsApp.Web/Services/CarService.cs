@@ -4,21 +4,21 @@ namespace LexiconCarsApp.Web.Services
 {
     public class CarService
     {
-        private static readonly List<Car> cars = [
-            new(1,"Yaris","Toyota",2012,"Gul"),
-            new(2,"Yaris","Toyota",2012,"Gul"),
-            new(3,"Yaris","Toyota",2012,"Gul"),
-            new(4,"Yaris","Toyota",2012,"Gul")
-            ];
+        private static readonly List<Car> cars = new()
+            {
+                new Car { Id = 1, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+                new Car { Id = 2, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+                new Car { Id = 3, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+                new Car { Id = 4, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" }
+            };
 
-        public Car[] GetAllCars() => [.. cars.OrderBy(c => c.Model)];
+        public Car[] GetAllCars() => cars.OrderBy(c => c.Model).ToArray();
 
-        public Car? GetCarById(int id) => cars
-            .SingleOrDefault(c => c.Id == id);
+        public Car? GetCarById(int id) => cars.SingleOrDefault(c => c.Id == id);
 
         public void AddCar(Car car)
         {
-            car.Id = cars.Max(c => c.Id) + 1;
+            car.Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1;
             cars.Add(car);
         }
 
@@ -42,6 +42,5 @@ namespace LexiconCarsApp.Web.Services
                 cars.Remove(car);
             }
         }
-
     }
 }
