@@ -14,7 +14,7 @@
         @RenderBody()
     </div>
     <footer>FOOTER</footer>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js" asp-fallback-src="~/Scripts/Libs/jquery/jquery.min.js" asp-fallback-test="window.jQuery"></script>
     @RenderSection("Scripts", false)
 </body>
 </html>
