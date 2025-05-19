@@ -9,6 +9,14 @@
 
 <body>
     <header>HEADER</header>
+    <ul>
+        <li>
+            <a asp-controller="Cars" asp-action="@nameof(CarsController.Index)">Home</a>
+        </li>
+        <li>
+            <a asp-controller="Cars" asp-action="@nameof(CarsController.Create)">Create car</a>
+        </li>
+    </ul>
     <div>
         <partial name ="_LoginForm" model = "3"/>
         @RenderBody()
