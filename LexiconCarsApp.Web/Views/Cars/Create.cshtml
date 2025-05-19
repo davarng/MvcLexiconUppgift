@@ -2,35 +2,36 @@
 @model LexiconCarsApp.Web.Models.Car
 @using LexiconCarsApp.Web.Controllers
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create Car</title>
-    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
-</head>
-<body>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Create Car";
+}
+
+<div>
     <h2>Create Car</h2>
 
     <form asp-controller="Cars" asp-action="@nameof(CarsController.Create)">
         <label asp-for="Make"></label>
-        <input asp-for="Make" required/>
+        <input asp-for="Make" required />
         @*<span asp-validation-for="Make"></span> *@
 
         <label asp-for="Model"></label>
-        <input asp-for="Model" required/>
+        <input asp-for="Model" required />
         @*<span asp-validation-for="Model"></span> *@
 
         <label asp-for="Color"></label>
-        <input asp-for="Color" required/>
+        <input asp-for="Color" required />
         @* <span asp-validation-for="Color"></span> *@
 
         <label asp-for="Year"></label>
-        <input asp-for="Year" required/>
+        <input asp-for="Year" required />
         @* <span asp-validation-for="Year"></span> *@
 
         <input type="submit" value="Save" />
     </form>
     <div asp-validation-summary="All"></div>
-</body>
-</html>
+    @section scripts {
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    }
+</div>

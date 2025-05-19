@@ -3,27 +3,24 @@
 @using LexiconCarsApp.Web.Models
 @model Car[]
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link rel="stylesheet" href="https://unpkg.com/@@picocss/pico@@latest/css/pico.classless.min.css">
-</head>
-<body>
-    <div>
-        <h2>Cars</h2>
-        <ul>
-            @foreach (Car car in Model)
-            {
-                <li>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Details)" asp-route-id="@car.Id">@car.Make</a>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Edit)" asp-route-id="@car.Id">Edit</a>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Delete)" asp-route-id="@car.Id">Delete</a>
-                </li>
-            }
-        </ul>
-        <h3><a asp-controller="Cars" asp-action="@nameof(CarsController.Create)">Create car</a></h3>
-    </div>
-</body>
-</html>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Index";
+}
+
+
+<div>
+    <h2>Cars</h2>
+    <ul>
+        @foreach (Car car in Model)
+        {
+            <li>
+                <a asp-controller="Cars" asp-action="@nameof(CarsController.Details)" asp-route-id="@car.Id">@car.Make</a>
+                <a asp-controller="Cars" asp-action="@nameof(CarsController.Edit)" asp-route-id="@car.Id">Edit</a>
+                <a asp-controller="Cars" asp-action="@nameof(CarsController.Delete)" asp-route-id="@car.Id">Delete</a>
+            </li>
+        }
+    </ul>
+    <h3><a asp-controller="Cars" asp-action="@nameof(CarsController.Create)">Create car</a></h3>
+</div>
+
