@@ -1,6 +1,7 @@
 ﻿using LexiconCarsApp.Web.Models;
 using LexiconCarsApp.Web.Services;
 using LexiconCarsApp.Web.Views.Cars;
+using LexiconCarsApp.Web.Views.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LexiconCarsApp.Web.Controllers
@@ -53,15 +54,28 @@ namespace LexiconCarsApp.Web.Controllers
         public IActionResult Edit(int id)
         {
             var model = carService.GetCarById(id);
-            return View(model);
+
+            if (model == null)
+            {
+                return NotFound("Car not found");
+            }
+
+            var viewModel = new CarFormVm()
+            {
+                Year = model!.Year,
+                Make = model.Make,
+                Color = model.Color,
+                Model = model.Model,
+            };
+            return View(viewModel);
         }
 
         [HttpPost("/edit/{id}")]
-        public IActionResult Edit(Car car)
+        public IActionResult Edit(CarFormVm carForm, int id)
         {
             if (ModelState.IsValid)
             {
-                carService.UpdateCar(car);
+                carService.UpdateCar(carForm, id);
                 return RedirectToAction(nameof(Index));
             }
 

@@ -1,4 +1,5 @@
 ﻿using LexiconCarsApp.Web.Models;
+using LexiconCarsApp.Web.Views.Shared;
 
 namespace LexiconCarsApp.Web.Services
 {
@@ -22,15 +23,15 @@ namespace LexiconCarsApp.Web.Services
             cars.Add(car);
         }
 
-        public void UpdateCar(Car car)
+        public void UpdateCar(CarFormVm carForm, int id)
         {
-            var carFound = GetCarById(car.Id);
+            var carFound = GetCarById(id);
             if (carFound != null)
             {
-                carFound.Model = car.Model;
-                carFound.Make = car.Make;
-                carFound.Year = car.Year;
-                carFound.Color = car.Color;
+                carFound.Model = carForm.Model;
+                carFound.Make = carForm.Make;
+                carFound.Year = carForm.Year;
+                carFound.Color = carForm.Color;
             }
         }
 
