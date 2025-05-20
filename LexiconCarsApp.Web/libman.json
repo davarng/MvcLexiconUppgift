@@ -5,7 +5,10 @@
     {
       "provider": "cdnjs",
       "library": "jquery@3.7.1",
-      "destination": "wwwroot/Scripts/Libs/Jquery/jquery/"
+      "destination": "wwwroot/Scripts/Libs/jquery/",
+      "files": [
+        "jquery.min.js"
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Scripts\Libs\Jquery\" />
+    <Folder Include="wwwroot\Scripts\Libs\" />
   </ItemGroup>
 
 </Project>
