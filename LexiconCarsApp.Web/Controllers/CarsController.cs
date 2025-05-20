@@ -1,20 +1,27 @@
 ﻿using LexiconCarsApp.Web.Models;
 using LexiconCarsApp.Web.Services;
+using LexiconCarsApp.Web.Views.Cars;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LexiconCarsApp.Web.Controllers
 {
-    public class CarsController : Controller
+    public class CarsController(CarService carService) : Controller
     {
-        static readonly CarService carService = new();
-
-        public CarsController() { }
-
         [HttpGet("/")]
         public IActionResult Index()
         {
             var model = carService.GetAllCars();
-            return View(model);
+
+            var viewModel = new IndexVm
+            {
+                ListOfIndexItemVms = [.. model.Select(c => new IndexVm.IndexItemVm
+                {
+                    CarMake = c.Make,
+                    CarId = c.Id
+                })]
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet("/details/{id}")]

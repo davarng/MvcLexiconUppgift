@@ -1,4 +1,4 @@
-﻿@model Car[]
+﻿@model LexiconCarsApp.Web.Views.Cars.IndexVm
 
 @{
     Layout = "_Layout";
@@ -9,12 +9,12 @@
     <div>
         <h2>Cars</h2>
         <ul>
-            @foreach (Car car in Model)
+            @foreach (var car in Model.ListOfIndexItemVms)
             {
                 <li>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Details)" asp-route-id="@car.Id">@car.Make</a>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Edit)" asp-route-id="@car.Id">Edit</a>
-                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Delete)" asp-route-id="@car.Id">Delete</a>
+                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Details)" asp-route-id="@car.CarId">@car.CarMake</a>
+                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Edit)" asp-route-id="@car.CarId">Edit</a>
+                    <a asp-controller="Cars" asp-action="@nameof(CarsController.Delete)" asp-route-id="@car.CarId">Delete</a>
                 </li>
             }
         </ul>

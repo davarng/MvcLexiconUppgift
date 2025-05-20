@@ -1,25 +1,30 @@
 ﻿@model Car
 
-<form asp-controller="Cars" asp-action="@ViewBag.FormType">
+@{
+    string FormType = ViewBag.FormType;
+}
+
+<form asp-controller="Cars" asp-action="@FormType" method="post">
     <label asp-for="Make"></label>
-    <input asp-for="Make" required />
+    <input asp-for="Make" required/>
     <span asp-validation-for="Make"></span>
 
     <label asp-for="Model"></label>
-    <input asp-for="Model" required />
+    <input asp-for="Model" required/>
     <span asp-validation-for="Model"></span>
 
     <label asp-for="Color"></label>
-    <input asp-for="Color" required />
+    <input asp-for="Color" required/>
     <span asp-validation-for="Color"></span>
 
     <label asp-for="Year"></label>
-    <input asp-for="Year" required />
+    <input asp-for="Year" required/>
     <span asp-validation-for="Year"></span>
 
-    <input type="submit" value="Save" />
+    <input type="submit" value="Save"/>
+    <div asp-validation-summary="All"></div>
 </form>
-<div asp-validation-summary="All"></div>
+
 @section scripts {
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js" asp-fallback-src="~/Scripts/Libs/jquery/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js" asp-fallback-src="~/Scripts/Libs/jquery/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobtrusive"></script>

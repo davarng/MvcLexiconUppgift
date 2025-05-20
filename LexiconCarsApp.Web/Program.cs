@@ -1,3 +1,5 @@
+using LexiconCarsApp.Web.Services;
+
 namespace LexiconCarsApp.Web
 {
     public class Program
@@ -7,6 +9,8 @@ namespace LexiconCarsApp.Web
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<CarService>();
 
             var app = builder.Build();
 

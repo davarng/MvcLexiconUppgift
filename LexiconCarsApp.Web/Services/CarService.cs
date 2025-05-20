@@ -4,15 +4,15 @@ namespace LexiconCarsApp.Web.Services
 {
     public class CarService
     {
-        private static readonly List<Car> cars = new()
-            {
-                new Car { Id = 1, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-                new Car { Id = 2, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-                new Car { Id = 3, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-                new Car { Id = 4, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" }
-            };
+        private static readonly List<Car> cars =
+        [
+            new Car { Id = 1, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 2, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 3, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 4, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" }
+        ];
 
-        public Car[] GetAllCars() => cars.OrderBy(c => c.Model).ToArray();
+        public Car[] GetAllCars() => [.. cars.OrderBy(c => c.Model)];
 
         public Car? GetCarById(int id) => cars.SingleOrDefault(c => c.Id == id);
 
