@@ -7,10 +7,10 @@ namespace LexiconCarsApp.Web.Services
     {
         private static readonly List<Car> cars =
         [
-            new Car { Id = 1, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 2, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 3, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 4, Model = "Yaris", Make = "Toyota", Year = 2012, Color = "Yellow" }
+            new Car { Id = 1, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 2, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 3, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
+            new Car { Id = 4, Model = "ModelS", Make = "Toyota", Year = 2012, Color = "Yellow" }
         ];
 
         public Car[] GetAllCars() => [.. cars.OrderBy(c => c.Model)];
