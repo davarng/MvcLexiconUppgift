@@ -10,7 +10,7 @@ namespace LexiconCarsApp.Web
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<CarService>();
+            builder.Services.AddSingleton<CarService>();
 
             var app = builder.Build();
 
