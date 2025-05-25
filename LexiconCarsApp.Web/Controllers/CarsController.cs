@@ -39,6 +39,7 @@ namespace LexiconCarsApp.Web.Controllers
                 Make = model.Make,
                 Color = model.Color,
                 Model = model.Model,
+                Id = model.Id
             };
 
             return View(viewModel);
@@ -51,7 +52,7 @@ namespace LexiconCarsApp.Web.Controllers
         }
 
         [HttpPost("/create")]
-        public IActionResult Create(CarFormVm car)
+        public IActionResult Create(CreateVm car)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +73,7 @@ namespace LexiconCarsApp.Web.Controllers
                 return NotFound("Car not found");
             }
 
-            var viewModel = new CarFormVm()
+            var viewModel = new EditVm()
             {
                 Year = model.Year,
                 Make = model.Make,
@@ -83,11 +84,11 @@ namespace LexiconCarsApp.Web.Controllers
         }
 
         [HttpPost("/edit/{id}")]
-        public IActionResult Edit(CarFormVm carForm, int id)
+        public IActionResult Edit(EditVm carEdit, int id)
         {
             if (ModelState.IsValid)
             {
-                carService.UpdateCar(carForm, id);
+                carService.UpdateCar(carEdit, id);
                 return RedirectToAction(nameof(Index));
             }
 
