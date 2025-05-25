@@ -1,8 +1,7 @@
 ﻿using LexiconCarsApp.Web.Views.Shared;
 
-namespace LexiconCarsApp.Web.Views.Cars
+namespace LexiconCarsApp.Web.Views.Cars;
+
+public class CreateVm : CarFormVm
 {
-    public class CreateVm : CarFormVm
-    {
-    }
 }

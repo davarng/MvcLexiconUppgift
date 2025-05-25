@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using LexiconCarsApp.Web.Views.Shared;
+﻿using LexiconCarsApp.Web.Views.Shared;
 
-namespace LexiconCarsApp.Web.Views.Cars
+namespace LexiconCarsApp.Web.Views.Cars;
+
+public class EditVm : CarFormVm
 {
-    public class EditVm : CarFormVm
-    {
-    }
 }

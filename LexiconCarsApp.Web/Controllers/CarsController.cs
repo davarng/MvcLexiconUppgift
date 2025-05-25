@@ -1,105 +1,102 @@
-﻿using LexiconCarsApp.Web.Models;
-using LexiconCarsApp.Web.Services;
+﻿using LexiconCarsApp.Web.Services;
 using LexiconCarsApp.Web.Views.Cars;
-using LexiconCarsApp.Web.Views.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LexiconCarsApp.Web.Controllers
+namespace LexiconCarsApp.Web.Controllers;
+
+public class CarsController(CarService carService) : Controller
 {
-    public class CarsController(CarService carService) : Controller
+    [HttpGet("/")]
+    public IActionResult Index()
     {
-        [HttpGet("/")]
-        public IActionResult Index()
-        {
-            var model = carService.GetAllCars();
+        var model = carService.GetAllCars();
 
-            var viewModel = new IndexVm
+        var viewModel = new IndexVm
+        {
+            ListOfIndexItemVms = [.. model.Select(c => new IndexVm.IndexItemVm
             {
-                ListOfIndexItemVms = [.. model.Select(c => new IndexVm.IndexItemVm
-                {
-                    CarMake = c.Make,
-                    CarId = c.Id
-                })]
-            };
+                CarMake = c.Make,
+                CarId = c.Id
+            })]
+        };
 
-            return View(viewModel);
-        }
+        return View(viewModel);
+    }
 
-        [HttpGet("/details/{id}")]
-        public IActionResult Details(int id)
+    [HttpGet("/details/{id}")]
+    public IActionResult Details(int id)
+    {
+        var model = carService.GetCarById(id);
+
+        if (model == null)
+            return NotFound("Car not found");
+
+        var viewModel = new DetailsVm()
         {
-            var model = carService.GetCarById(id);
+            Year = model.Year,
+            Make = model.Make,
+            Color = model.Color,
+            Model = model.Model,
+            Id = model.Id
+        };
 
-            if (model == null)
-                return NotFound("Car not found");
+        return View(viewModel);
+    }
 
-            var viewModel = new DetailsVm()
-            {
-                Year = model.Year,
-                Make = model.Make,
-                Color = model.Color,
-                Model = model.Model,
-                Id = model.Id
-            };
+    [HttpGet("/create")]
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-            return View(viewModel);
-        }
-
-        [HttpGet("/create")]
-        public IActionResult Create()
+    [HttpPost("/create")]
+    public IActionResult Create(CreateVm car)
+    {
+        if (ModelState.IsValid)
         {
-            return View();
-        }
-
-        [HttpPost("/create")]
-        public IActionResult Create(CreateVm car)
-        {
-            if (ModelState.IsValid)
-            {
-                carService.AddCar(car);
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View();
-        }
-
-        [HttpGet("/edit/{id}")]
-        public IActionResult Edit(int id)
-        {
-            var model = carService.GetCarById(id);
-
-            if (model == null)
-            {
-                return NotFound("Car not found");
-            }
-
-            var viewModel = new EditVm()
-            {
-                Year = model.Year,
-                Make = model.Make,
-                Color = model.Color,
-                Model = model.Model,
-            };
-            return View(viewModel);
-        }
-
-        [HttpPost("/edit/{id}")]
-        public IActionResult Edit(EditVm carEdit, int id)
-        {
-            if (ModelState.IsValid)
-            {
-                carService.UpdateCar(carEdit, id);
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View();
-        }
-
-        [HttpGet("/delete/{id}")]
-        public IActionResult Delete(int id)
-        {
-            carService.DeleteCar(id);
+            carService.AddCar(car);
             return RedirectToAction(nameof(Index));
         }
+
+        return View();
+    }
+
+    [HttpGet("/edit/{id}")]
+    public IActionResult Edit(int id)
+    {
+        var model = carService.GetCarById(id);
+
+        if (model == null)
+        {
+            return NotFound("Car not found");
+        }
+
+        var viewModel = new EditVm()
+        {
+            Year = model.Year,
+            Make = model.Make,
+            Color = model.Color,
+            Model = model.Model,
+        };
+        return View(viewModel);
+    }
+
+    [HttpPost("/edit/{id}")]
+    public IActionResult Edit(EditVm carEdit, int id)
+    {
+        if (ModelState.IsValid)
+        {
+            carService.UpdateCar(carEdit, id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View();
+    }
+
+    [HttpGet("/delete/{id}")]
+    public IActionResult Delete(int id)
+    {
+        carService.DeleteCar(id);
+        return RedirectToAction(nameof(Index));
     }
 }
