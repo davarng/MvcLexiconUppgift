@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using LexiconCarsApp.Web.Views.Shared;
+﻿using LexiconCarsApp.Web.Views.Shared;
 
 namespace LexiconCarsApp.Web.Views.Cars
 {

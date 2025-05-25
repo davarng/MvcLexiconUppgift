@@ -8,10 +8,10 @@ namespace LexiconCarsApp.Web.Services
     {
         private static readonly List<Car> cars =
         [
-            new Car { Id = 1, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 2, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 3, Model = "Model", Make = "Toyota", Year = 2012, Color = "Yellow" },
-            new Car { Id = 4, Model = "ModelS", Make = "Toyota", Year = 2012, Color = "Yellow" }
+            new Car(1, "Model", "Toyota", 2012, "Blue"),
+            new Car(2, "Model", "Honda", 2012, "Yellow"),
+            new Car(3, "Model", "Hyundai", 2012, "Green"),
+            new Car(4, "Model", "Subaru", 2012, "Black")
         ];
 
         public Car[] GetAllCars() => [.. cars.OrderBy(c => c.Model)];
@@ -20,14 +20,8 @@ namespace LexiconCarsApp.Web.Services
 
         public void AddCar(CreateVm carCreate)
         {
-            var car = new Car
-            {
-                Model = carCreate.Model,
-                Make = carCreate.Make,
-                Year = carCreate.Year,
-                Color = carCreate.Color,
-                Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1
-            };
+            var car = new Car(carCreate.Id, carCreate.Model, carCreate.Make, carCreate.Year, carCreate.Color);
+
 
             cars.Add(car);
         }
