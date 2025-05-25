@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LexiconCarsApp.Web.Controllers
 {
-    public class CarsController(CarService carService) : Controller
+    public class CarsController(CarService carService, ILogger<CarsController> logger) : Controller
     {
         [HttpGet("/")]
         public IActionResult Index()
@@ -21,6 +21,8 @@ namespace LexiconCarsApp.Web.Controllers
                     CarId = c.Id
                 })]
             };
+
+            logger.LogInformation("testlog");
 
             return View(viewModel);
         }

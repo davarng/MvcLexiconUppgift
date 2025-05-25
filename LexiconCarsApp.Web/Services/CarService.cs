@@ -23,6 +23,12 @@ namespace LexiconCarsApp.Web.Services
             cars.Add(car);
         }
 
+        public void AddAsync(Car car)
+        {
+            car.Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1;
+            cars.Add(car);
+        }
+
         public void UpdateCar(CarFormVm carForm, int id)
         {
             var carFound = GetCarById(id);
