@@ -51,7 +51,7 @@ namespace LexiconCarsApp.Web.Controllers
         }
 
         [HttpPost("/create")]
-        public IActionResult Create(Car car)
+        public IActionResult Create(CarFormVm car)
         {
             if (ModelState.IsValid)
             {

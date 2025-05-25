@@ -17,15 +17,17 @@ namespace LexiconCarsApp.Web.Services
 
         public Car? GetCarById(int id) => cars.SingleOrDefault(c => c.Id == id);
 
-        public void AddCar(Car car)
+        public void AddCar(CarFormVm carForm)
         {
-            car.Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1;
-            cars.Add(car);
-        }
+            var car = new Car
+            {
+                Model = carForm.Model,
+                Make = carForm.Make,
+                Year = carForm.Year,
+                Color = carForm.Color,
+                Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1
+            };
 
-        public void AddAsync(Car car)
-        {
-            car.Id = cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1;
             cars.Add(car);
         }
 
