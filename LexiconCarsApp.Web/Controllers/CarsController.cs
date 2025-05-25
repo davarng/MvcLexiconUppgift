@@ -31,11 +31,17 @@ namespace LexiconCarsApp.Web.Controllers
             var model = carService.GetCarById(id);
 
             if (model == null)
-            {
                 return NotFound("Car not found");
-            }
 
-            return View(model);
+            var viewModel = new DetailsVm()
+            {
+                Year = model.Year,
+                Make = model.Make,
+                Color = model.Color,
+                Model = model.Model,
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet("/create")]
@@ -68,7 +74,7 @@ namespace LexiconCarsApp.Web.Controllers
 
             var viewModel = new CarFormVm()
             {
-                Year = model!.Year,
+                Year = model.Year,
                 Make = model.Make,
                 Color = model.Color,
                 Model = model.Model,
