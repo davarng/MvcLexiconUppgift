@@ -4,6 +4,7 @@
     string FormType = ViewBag.FormType;
 }
 
+@*Form that I use for both edit and create. It takes in CarFormVm which is a parent to EditVm and CreateVm. Formtype is used for asp-action*@
 <form asp-controller="Cars" asp-action="@FormType" method="post">
     <label asp-for="Make"></label>
     <input asp-for="Make" required/>

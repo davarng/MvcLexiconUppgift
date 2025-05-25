@@ -17,6 +17,7 @@ public class CarService
 
     public Car? GetCarById(int id) => cars.SingleOrDefault(c => c.Id == id);
 
+    //Sending in a CreateVm and making the id one higher than the current max id.
     public void AddCar(CreateVm carCreate)
     {
         var car = new Car(cars.Count == 0 ? 1 : cars.Max(o => o.Id) + 1,
@@ -25,6 +26,7 @@ public class CarService
         cars.Add(car);
     }
 
+    //EditVm with all the edited properties and the id from the url to find the correct car.
     public void UpdateCar(EditVm carEdit, int id)
     {
         var carFound = GetCarById(id);

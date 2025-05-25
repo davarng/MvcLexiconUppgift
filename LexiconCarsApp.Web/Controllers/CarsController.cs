@@ -3,12 +3,13 @@ using LexiconCarsApp.Web.Views.Cars;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LexiconCarsApp.Web.Controllers;
-
+//Dependency injection in primary constructor.
 public class CarsController(CarService carService) : Controller
 {
     [HttpGet("/")]
     public IActionResult Index()
     {
+        //Get all cars and map them to the view model.
         var model = carService.GetAllCars();
 
         var viewModel = new IndexVm
@@ -52,6 +53,7 @@ public class CarsController(CarService carService) : Controller
     [HttpPost("/create")]
     public IActionResult Create(CreateVm car)
     {
+        //Checks if attributes in the model are valid. Redirects to the view if not valid.
         if (ModelState.IsValid)
         {
             carService.AddCar(car);
@@ -67,9 +69,7 @@ public class CarsController(CarService carService) : Controller
         var model = carService.GetCarById(id);
 
         if (model == null)
-        {
             return NotFound("Car not found");
-        }
 
         var viewModel = new EditVm()
         {
@@ -84,8 +84,10 @@ public class CarsController(CarService carService) : Controller
     [HttpPost("/edit/{id}")]
     public IActionResult Edit(EditVm carEdit, int id)
     {
+        //Checks if attributes in the model are valid. Redirects to the view if not valid.
         if (ModelState.IsValid)
         {
+            //Sends EditVm and id to update specific car.
             carService.UpdateCar(carEdit, id);
             return RedirectToAction(nameof(Index));
         }

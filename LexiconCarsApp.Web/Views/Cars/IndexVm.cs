@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LexiconCarsApp.Web.Views.Cars;
+﻿namespace LexiconCarsApp.Web.Views.Cars;
 
 public class IndexVm
 {
     public class IndexItemVm
     {
-
         public required string CarMake { get; set; }
 
         public required int CarId { get; set; }

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    @*Header with nameof to avoid magic strings.*@
     <header>HEADER</header>
     <ul>
         <li>
@@ -19,9 +20,11 @@
     </ul>
     <div>
         <partial name ="_LoginForm" model = "3"/>
+        @*Renders the page that is gotten through the view and displays it in the middle of the layout.*@
         @RenderBody()
     </div>
     <footer>FOOTER</footer>
+    @*Renders scripts*@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js" asp-fallback-src="~/Scripts/Libs/jquery/jquery.min.js" asp-fallback-test="window.jQuery"></script>
     @RenderSection("Scripts", false)
 </body>
